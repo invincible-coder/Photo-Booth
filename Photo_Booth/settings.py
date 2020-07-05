@@ -125,7 +125,7 @@ STATICFILES_FINDERS = (
 )
 
 STATICFILES_DIRS = (
-    os.path.join(PROJECT_DIR, '../me_in_4x/static'),
+    os.path.join(PROJECT_DIR, '../Photo_Booth/static'),
 )
 
 STATIC_URL = '/static/'
