@@ -1,18 +1,15 @@
-{% extends 'base.html' %}
-{% block title %}
+{% extends 'base.html' %} {% block title %}
 <title>Photo Booth | Home</title>
-{% endblock title %}
-{% block navlinks %}
+{% endblock title %} {% block navlinks %}
 <li class="nav-item active">
     <a href="{% url 'home' %}" class="nav-link">Home</a>
 </li>
 <li class="nav-item">
-    <a href="{% url 'image-to-text' %}" class="nav-link">Image to Text</a>
+    <a href="{% url 'image_to_text' %}" class="nav-link">Image to Text</a>
 </li>
 <li class="nav-item">
-    <a href="{% url 'text-to-speech' %}" class="nav-link">Text to Speech</a>
+    <a href="{% url 'text_to_speech' %}" class="nav-link">Text to Speech</a>
 </li>
-{% endblock navlinks %}
-{% block body %}
+{% endblock navlinks %} {% block body %}
 <h2>Work for this section is currently under progress</h2>
 {% endblock body %}

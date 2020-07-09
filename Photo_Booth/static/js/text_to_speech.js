@@ -80,16 +80,37 @@ $form.on('submit', function(e) {
             complete: function() {
                 $form.removeClass('is-uploading');
             },
-            success: function(data) {
+            success: function(data, status, xhr) {
                 $form.addClass(data.success == true ? 'is-success' : 'is-error');
-                if (!data.success) $errorMsg.text(data.error);
+                //if (!data.success) $errorMsg.text(data.error);
+                if (data.success) {
+                    iziToast.success({
+                        title: "Success",
+                        message: data.message,
+                        position: "bottomRight",
+                    });
+                    // from here you can send the get request to get the processed files.
+                } else {
+                    iziToast.error({
+                        title: "Error",
+                        message: data.message,
+                        position: "bottomRight",
+                        onclosing: function() {
+                            window.location.reload();
+                        }
+                    });
+                }
             },
-            error: function() {
-                // Log the error, show an alert, whatever works for you
+            error: function(xhr, status, err) {
+                iziToast.info({
+                    title: "Error",
+                    message: "Facing server issues, contact admin if preblem persists",
+                    position: "bottomRight",
+                })
             }
         });
     } else {
-        // ajax for legacy browsers
+        // ajax for legacy browsers that do not support 'drag n drop'
         var iframeName = 'uploadiframe' + new Date().getTime();
         $iframe = $('<iframe name="' + iframeName + '" style="display: none;"></iframe>');
 

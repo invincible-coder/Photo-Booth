@@ -3,22 +3,18 @@
 
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0 shrink-to-fit=no">
-    {% load static %}
-    {% block title %}{% endblock title %}
+    <meta name="viewport" content="width=device-width, initial-scale=1.0 shrink-to-fit=no"> {% load static %} {% block title %}{% endblock title %}
     <link rel="stylesheet" href="{% static 'css/bootstrap.min.css' %}">
     <link rel="stylesheet" href="{% static 'css/bootstrap-social.css' %}">
     <link rel="stylesheet" href="{% static 'css/iziToast.min.css' %}">
     <link rel="stylesheet" href="{% static 'css/base_style.css' %}">
-    <link rel="stylesheet" href="{% static 'fonts/fontawesome/css/font-awesome.min.css' %}">
-    {% block head %}{% endblock head %}
+    <link rel="stylesheet" href="{% static 'fonts/fontawesome/css/font-awesome.min.css' %}"> {% block head %}{% endblock head %}
 </head>
 
 <body>
     <nav class="navbar navbar-dark navbar-expand-sm static-top">
         <div class="container">
-            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#Navbar"
-                aria-controls="navbarsExampleDefault" aria-expanded="false" aria-label="Toggle navigation">
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#Navbar" aria-controls="navbarsExampleDefault" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
             </button>
             <a href="{% url 'home' %}" class="navbar-brand mr-auto">Photo Booth</a>
@@ -49,8 +45,7 @@
                     <a href="https://github.com/invincible-coder" class="btn btn-social-icon btn-github"><i
                             class="fa fa-github fa-sm"></i></a>
                     <!-- copy paste below link with your's -->
-                    <a href="https://linkedin.com/in/purushottam-tiwari-5853b0190"
-                        class="btn btn-social-icon btn-linkedin"><i class="fa fa-linkedin fa-sm"></i></a>
+                    <a href="https://linkedin.com/in/purushottam-tiwari-5853b0190" class="btn btn-social-icon btn-linkedin"><i class="fa fa-linkedin fa-sm"></i></a>
                     <a href="http://wa.me/8449110839" class="btn btn-social-icon"><i class="fa fa-whatsapp fa-sm"
                             style="background-color: rgb(43, 167, 18); color: ghostwhite;"></i></a>
                     <a href="mailto:raghav.singhal.eee19@itbhu.ac.in" class="btn btn-social-icon"><i
@@ -59,8 +54,7 @@
                 <div class="offset-1 col-sm-5 col-5">
                     <a href="https://github.com/m-e-l-u-h-a-n" class="btn btn-social-icon btn-github"><i
                             class="fa fa-github fa-sm"></i></a>
-                    <a href="https://linkedin.com/in/purushottam-tiwari-5853b0190"
-                        class="btn btn-social-icon btn-linkedin"><i class="fa fa-linkedin fa-sm"></i></a>
+                    <a href="https://linkedin.com/in/purushottam-tiwari-5853b0190" class="btn btn-social-icon btn-linkedin"><i class="fa fa-linkedin fa-sm"></i></a>
                     <a href="http://wa.me/918955316471" class="btn btn-social-icon"><i class="fa fa-whatsapp"
                             style="background-color: rgb(43, 167, 18); color: ghostwhite;"></i></a>
                     <a href="mailto:purushottamtiwaribanda@gmail.com" class="btn btn-social-icon"><i
@@ -69,27 +63,23 @@
             </div>
             <div class="row justify-content-center">
                 <p class="copyright">Copyright &copy;
-                    <script>document.write(new Date().getFullYear());</script> All Rights Reserved</p>
+                    <script>
+                        document.write(new Date().getFullYear());
+                    </script> All Rights Reserved</p>
             </div>
         </div>
     </footer>
-    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"
-        integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj"
-        crossorigin="anonymous"></script>
-    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"
-        integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo"
-        crossorigin="anonymous"></script>
-    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js"
-        integrity="sha384-OgVRvuATP1z7JjHLkuOU7Xw704+h835Lr+6QL9UvYjZE3Ipu6Tp75j7Bh/kR0JKI"
-        crossorigin="anonymous"></script>
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js" integrity="sha384-OgVRvuATP1z7JjHLkuOU7Xw704+h835Lr+6QL9UvYjZE3Ipu6Tp75j7Bh/kR0JKI" crossorigin="anonymous"></script>
+    <script src="{% static 'js/iziToast.min.js' %}"></script>
     {% block footer %}{% endblock footer %}
     <!-- <script src="{% static 'js/jquery.slim.min.js' %}"></script>
     <script src="{% static 'js/popper.min.js' %}"></script>
-    <script src="{% static 'js/bootstrap.min.js' %}"></script>
-    <script src="{% static 'js/iziToast.min.js' %}"></script> -->
+    <script src="{% static 'js/bootstrap.min.js' %}"></script> -->
     <script>
-        $(document).ready(function () {
-            setInterval(function () {
+        $(document).ready(function() {
+            setInterval(function() {
                 var docHeight = $(window).height();
                 var footerHeight = $('#footer').height();
                 var footerTop = $('#footer').position().top + footerHeight;

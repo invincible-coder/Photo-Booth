@@ -6,10 +6,10 @@
     <a href="{% url 'home' %}" class="nav-link">Home</a>
 </li>
 <li class="nav-item active">
-    <a href="{% url 'image-to-text' %}" class="nav-link">Image to Text</a>
+    <a href="{% url 'image_to_text' %}" class="nav-link">Image to Text</a>
 </li>
 <li class="nav-item">
-    <a href="{% url 'text-to-speech' %}" class="nav-link">Text to Speech</a>
+    <a href="{% url 'text_to_speech' %}" class="nav-link">Text to Speech</a>
 </li>
 {% endblock navlinks %} {% block body %}
 <header class="jumbotron jumbotron-fluid">
@@ -30,12 +30,12 @@
 </header>
 <div class="container">
     <div class="row justify-content-center">
-        <form class="box" method="POST" action="{% url 'image_to_text_process' %}" enctype="multipart/form-data">
+        <form class="box" method="POST" action="" enctype="multipart/form-data">
             {% csrf_token %}
             <div class="box__input">
                 <div class="container align-items-center">
                     <div class="row justify-content-center">
-                        <input class="box__file" type="file" name="files[]" id="file" data-multiple-caption="{count} files selected" multiple />
+                        <input class="box__file" type="file" name="file" id="file" data-multiple-caption="{count} files selected" multiple />
                         <label for="file"><strong>Choose a file</strong><span class="box__dragndrop"> or drag it
                                 here</span>.</label>
                     </div>
@@ -51,6 +51,6 @@
     </div>
 </div>
 {% endblock body %} {% block footer %}
-<script src="{% static 'js/text_to_speech.js' %}"></script>
 <script src="{% static 'js/jquery.min.js' %}"></script>
+<script src="{% static 'js/text_to_speech.js' %}"></script>
 {% endblock footer %}
