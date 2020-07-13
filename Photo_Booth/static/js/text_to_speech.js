@@ -1,4 +1,5 @@
 var inputs = document.querySelectorAll('.box__file');
+var resultString;
 Array.prototype.forEach.call(inputs, function(input) {
     var label = input.nextElementSibling,
         labelVal = label.innerHTML;
@@ -66,6 +67,7 @@ $form.on('submit', function(e) {
         if (droppedFiles) {
             $.each(droppedFiles, function(i, file) {
                 ajaxData.append($input.attr('name'), file);
+                console.log(file);
             });
         }
 
@@ -89,6 +91,18 @@ $form.on('submit', function(e) {
                         message: data.message,
                         position: "bottomRight",
                     });
+                    let mai = document.getElementById('mai');
+                    console.log(mai);
+                    mai.style.display = "block";
+                    resultString = data.text;
+                    document.getElementById("result").innerText = data.text;
+                    if (data.message == "File converted successfully") {
+                        console.log('hello');
+                        let link = document.getElementById('download-button');
+                        link.style.display = "block";
+                        link.href = "/" + data.path
+                    }
+                    //console.log(data.text);
                     // from here you can send the get request to get the processed files.
                 } else {
                     iziToast.error({
@@ -104,7 +118,7 @@ $form.on('submit', function(e) {
             error: function(xhr, status, err) {
                 iziToast.info({
                     title: "Error",
-                    message: "Facing server issues, contact admin if preblem persists",
+                    message: "Facing server issues, contact admin if problem persists",
                     position: "bottomRight",
                 })
             }
@@ -128,4 +142,37 @@ $form.on('submit', function(e) {
             $iframe.remove();
         });
     }
+});
+
+function downloadFile() {
+    console.log(resultString);
+    queryData = new FormData();
+    queryData.append('text', resultString);
+    $.ajax({
+        url: "/generateFile/",
+        type: 'POST',
+        data: queryData,
+        dataType: 'json',
+        cache: false,
+        contentType: false,
+        processData: false,
+        success: function(data, status, xhr) {
+
+        },
+        error: function(xhr, status, err) {
+
+        }
+    });
+}
+window.addEventListener("unload", function() {
+    $.ajax({
+        url: "/clearFiles/",
+        type: 'POST',
+        success: function(data, status, xhr) {
+
+        },
+        error: function(xhr, status, err) {
+
+        }
+    });
 });
