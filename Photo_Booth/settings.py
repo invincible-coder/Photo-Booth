@@ -136,7 +136,7 @@ STATICFILES_DIRS = [#this is where django will look for static files.
 
 STATIC_URL = '/static/'#URL to use when referring to static files located in STATIC_ROOT.
 
-STATIC_ROOT = os.path.join(PROJECT_ROOT, 'staticfiles')# this is from where collectstatic will collect your static files for deployment
+STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')# this is from where collectstatic will collect your static files for deployment
 
 STATICFILES_STORAGE = 'whitenoise.django.GzipManifestStaticFilesStorage'
 
