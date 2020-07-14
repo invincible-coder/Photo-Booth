@@ -38,13 +38,14 @@ INSTALLED_APPS = [
     'django.contrib.contenttypes',
     'django.contrib.sessions',
     'django.contrib.messages',
+    #'whitenoise.runserver_nostatic',
     'django.contrib.staticfiles',
     'Image_to_Speech'
 ]
 
 MIDDLEWARE = [
-    'whitenoise.django.GzipManifestStaticFilesStorage'
     'django.middleware.security.SecurityMiddleware',
+    'whitenoise.middleware.WhiteNoiseMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',
@@ -127,7 +128,6 @@ STATICFILES_FINDERS = [
 #    'django.contrib.staticfiles.finders.DefaultStorageFinder',
 ]
 
-#PROJECT_ROOT   =   os.path.join(os.path.abspath(__file__))
 
 STATICFILES_DIRS = [#this is where django will look for static files.
     os.path.join(PROJECT_DIR, '../Photo_Booth/static'),
@@ -138,7 +138,7 @@ STATIC_URL = '/static/'#URL to use when referring to static files located in STA
 
 STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')# this is from where collectstatic will collect your static files for deployment
 
-STATICFILES_STORAGE = 'whitenoise.django.GzipManifestStaticFilesStorage'
+STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
 
 MEDIA_ROOT = os.path.join(PROJECT_DIR,'static/media')
 
