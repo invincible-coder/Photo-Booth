@@ -1,1 +1,1 @@
-web: gunicorn Photo_Booth.wsgi --log-file -pip
+web: gunicorn Photo_Booth.wsgi --log-file -

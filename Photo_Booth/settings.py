@@ -25,7 +25,7 @@ PROJECT_DIR = os.path.dirname(os.path.abspath(__file__))
 SECRET_KEY = config('SECRET_KEY')
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = False
+DEBUG = config('DEBUG', default=False, cast=bool)
 
 ALLOWED_HOSTS = ['Photo_Booth.herokuapp.com']
 
@@ -121,21 +121,30 @@ USE_TZ = True
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/3.0/howto/static-files/
 
-STATICFILES_FINDERS = (
+STATICFILES_FINDERS = [
     'django.contrib.staticfiles.finders.FileSystemFinder',
     'django.contrib.staticfiles.finders.AppDirectoriesFinder',
 #    'django.contrib.staticfiles.finders.DefaultStorageFinder',
-)
+]
 
-STATICFILES_DIRS = (
+PROJECT_ROOT   =   os.path.join(os.path.abspath(__file__))
+
+STATICFILES_DIRS = [#this is where django will look for static files.
     os.path.join(PROJECT_DIR, '../Photo_Booth/static'),
-)
+    os.path.join(PROJECT_ROOT, 'static'),
+]
 
-STATIC_URL = '/static/'
-STATIC_ROOT = os.path.join(BASE_DIR, 'static')
+STATIC_URL = '/static/'#URL to use when referring to static files located in STATIC_ROOT.
+
+STATIC_ROOT = os.path.join(PROJECT_ROOT, 'staticfiles')# this is from where collectstatic will collect your static files for deployment
+
 STATICFILES_STORAGE = 'whitenoise.django.GzipManifestStaticFilesStorage'
+
 MEDIA_ROOT = os.path.join(PROJECT_DIR,'static/media')
+
 MEDIA_URL = '/media/'
+
 prod_db  =  dj_database_url.config(conn_max_age=500)
 DATABASES['default'].update(prod_db)
+
 django_heroku.settings(locals())
