@@ -127,11 +127,11 @@ STATICFILES_FINDERS = [
 #    'django.contrib.staticfiles.finders.DefaultStorageFinder',
 ]
 
-PROJECT_ROOT   =   os.path.join(os.path.abspath(__file__))
+#PROJECT_ROOT   =   os.path.join(os.path.abspath(__file__))
 
 STATICFILES_DIRS = [#this is where django will look for static files.
     os.path.join(PROJECT_DIR, '../Photo_Booth/static'),
-    os.path.join(PROJECT_ROOT, 'static'),
+  #  os.path.join(PROJECT_ROOT, 'static'),
 ]
 
 STATIC_URL = '/static/'#URL to use when referring to static files located in STATIC_ROOT.
