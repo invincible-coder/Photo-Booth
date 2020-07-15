@@ -11,7 +11,9 @@ https://docs.djangoproject.com/en/3.0/ref/settings/
 """
 
 import os
-
+import dj_database_url
+from decouple import config
+import django_heroku
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 PROJECT_DIR = os.path.dirname(os.path.abspath(__file__))
@@ -20,12 +22,12 @@ PROJECT_DIR = os.path.dirname(os.path.abspath(__file__))
 # See https://docs.djangoproject.com/en/3.0/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = '&(7&f!d)mgxlggx2+egy4%(f_9f$^9-=q_+p_2$p^ccmfl#dsm'
+SECRET_KEY = config('SECRET_KEY')
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = config('DEBUG', default=False, cast=bool)
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['Photo_Booth.herokuapp.com']
 
 
 # Application definition
@@ -36,12 +38,14 @@ INSTALLED_APPS = [
     'django.contrib.contenttypes',
     'django.contrib.sessions',
     'django.contrib.messages',
+    #'whitenoise.runserver_nostatic',
     'django.contrib.staticfiles',
     'Image_to_Speech'
 ]
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
+    'whitenoise.middleware.WhiteNoiseMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',
@@ -118,14 +122,29 @@ USE_TZ = True
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/3.0/howto/static-files/
 
-STATICFILES_FINDERS = (
+STATICFILES_FINDERS = [
     'django.contrib.staticfiles.finders.FileSystemFinder',
     'django.contrib.staticfiles.finders.AppDirectoriesFinder',
 #    'django.contrib.staticfiles.finders.DefaultStorageFinder',
-)
+]
 
-STATICFILES_DIRS = (
+
+STATICFILES_DIRS = [#this is where django will look for static files.
     os.path.join(PROJECT_DIR, '../Photo_Booth/static'),
-)
+  #  os.path.join(PROJECT_ROOT, 'static'),
+]
 
-STATIC_URL = '/static/'
+STATIC_URL = '/static/'#URL to use when referring to static files located in STATIC_ROOT.
+
+STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')# this is from where collectstatic will collect your static files for deployment
+
+STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
+
+MEDIA_ROOT = os.path.join(PROJECT_DIR,'static/media')
+
+MEDIA_URL = '/media/'
+
+prod_db  =  dj_database_url.config(conn_max_age=500)
+DATABASES['default'].update(prod_db)
+
+django_heroku.settings(locals())
